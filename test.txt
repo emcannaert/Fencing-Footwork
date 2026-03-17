@@ -1,5 +1,5 @@
 Hey, kids
-Welcome to Uncle Scott's torture chamber: 60 seconds in hell
+Welcome to Uncle Scott's torture chamber: 120 seconds in hell
 Let's get started in five
 pause 1
 four
@@ -10,59 +10,135 @@ two
 pause 1
 one
 pause 1
-retreat
-pause 2.2
 lunge
-pause 3.0
-advance
-pause 2.2
-retreat
-pause 2.2
-advance
-pause 2.2
-retreat
-pause 2.2
-advance
-pause 2.2
-advance
-pause 2.2
-retreat
-pause 2.2
-advance
-pause 2.2
-retreat
-pause 2.2
-retreat
-pause 2.2
+pause 2.5
 lunge
-pause 3.0
+pause 2.5
 advance
-pause 2.2
+pause 1.8
 advance
-pause 2.2
+pause 1.8
 advance
-pause 2.2
+pause 1.8
+advance
+pause 1.8
 retreat
-pause 2.2
+pause 1.8
+advance
+pause 1.8
+retreat
+pause 1.8
+advance
+pause 1.8
 lunge
-pause 3.0
+pause 2.5
+advance
+pause 1.8
+advance
+pause 1.8
 retreat
-pause 2.2
-advance
-pause 2.2
+pause 1.8
 retreat
-pause 2.2
+pause 1.8
 advance
-pause 2.2
+pause 1.8
 advance
-pause 2.2
+pause 1.8
 advance
-pause 2.2
-advance
-pause 2.2
-advance
-pause 2.2
+pause 1.8
+long retreat
+pause 1.8
 retreat
-pause 2.2
+pause 1.8
+retreat
+pause 1.8
+retreat
+pause 1.8
+advance
+pause 1.8
+retreat
+pause 1.8
+advance
+pause 1.8
+advance
+pause 1.8
+long retreat
+pause 1.8
+lunge
+pause 2.5
+advance
+pause 1.8
+retreat
+pause 1.8
+advance
+pause 1.8
+advance
+pause 1.8
+advance
+pause 1.8
+retreat
+pause 1.8
+retreat
+pause 1.8
+advance
+pause 1.8
+long retreat
+pause 1.8
+advance
+pause 1.8
+long retreat
+pause 1.8
+retreat
+pause 1.8
+advance
+pause 1.8
+long retreat
+pause 1.8
+lunge
+pause 2.5
+retreat
+pause 1.8
+advance
+pause 1.8
+advance
+pause 1.8
+advance
+pause 1.8
+retreat
+pause 1.8
+advance
+pause 1.8
+retreat
+pause 1.8
+retreat
+pause 1.8
+advance
+pause 1.8
+advance
+pause 1.8
+retreat
+pause 1.8
+advance
+pause 1.8
+retreat
+pause 1.8
+long retreat
+pause 1.8
+retreat
+pause 1.8
+retreat
+pause 1.8
+retreat
+pause 1.8
+retreat
+pause 1.8
+advance
+pause 1.8
+advance
+pause 1.8
+lunge
+pause 2.5
+advance
+pause 1.8
 Lesson complete.
 Well done.

@@ -154,9 +154,8 @@ if __name__=="__main__":
 	engine = pyttsx3.init()
 	voices = engine.getProperty('voices')
 
-	for index, voice in enumerate(voices):
-		print(f"Index: {index} | Name: {voice.name} | Languages: {voice.languages}")
-
+	#for index, voice in enumerate(voices):
+	#	print(f"Index: {index} | Name: {voice.name} | Languages: {voice.languages}")
 
 	fencerType = args.fencerType.lower()
 
