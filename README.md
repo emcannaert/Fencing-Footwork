@@ -44,8 +44,9 @@ The script is executed via the command line. You must provide the fencer type an
 #### Example Command
 
 To generate and run a 2-minute drill for a normal fencer on a 42-foot piste:
+```
 python fencing_footwork.py --fencerType normal --pisteLength 42 --duration 120 --pace 3
-
+```
 ---
 
 ### File Structure
