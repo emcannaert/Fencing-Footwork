@@ -7,10 +7,9 @@ from datetime import datetime
 def read_lesson(file_path):
 	# Initialize the TTS engine
 	engine = pyttsx3.init()
-
 	voices = engine.getProperty('voices')
 	#engine.setProperty('voice', voices[64].id)
-	#engine.setProperty('rate', 100)
+	#engine.setProperty('rate', 125)
 	try:
 		# Open and read the text file
 		with open(file_path, 'r', encoding='utf-8') as file:
@@ -38,11 +37,11 @@ def read_lesson(file_path):
 
 def get_fencer_pars(fencerType):
 	if fencerType == "child":
-		return 0.7, -1.0, -1.3, 1.8
+		return 0.7, -1.0, -1.3, 1.8, 6.0, 2.0, 0.25, 2.0, 3.0,0.0
 	elif fencerType == "normal":
-		return 1.0, -1.2, -1.6, 2.0
+		return 1.0, -1.2, -1.6, 2.0, 7.0, 3.8, 0.5, 2.5, 5.0, 0.0
 	elif fencerType == "athletic":
-		return 1.2, -1.5, -1.9, 2.3
+		return 1.2, -1.5, -1.9, 2.3, 8.0, 4.5,0.6, 3.0, 6.0, 0.0
 	else:
 		raise ValueError("ERROR: Incorrect fencer type: %s"%fencerType)
 
@@ -50,26 +49,41 @@ def get_fencer_pars(fencerType):
 # return the tempi (= time to complete) for each different action (advance, retreat, long retreat, lunge) in seconds
 def get_action_tempi(pace):
 	if pace == 1:
-			   # advance  retreat  long-retreat  lunge    fleche? adv-lunge? retr-lunge? long-lunge?
-		return     3.0,     3.0,       3.0,        5.0
+			   # advance  retreat  long-retreat  lunge    fleche adv-lunge retr-lunge long-lunge     redouble    duck
+		return     3.0,     3.0,       3.0,        5.0,      8.,       6.,        6.,           5.,      6.0,       5.0
 	elif pace == 2:
-		return     2.2,     2.2,       2.2,        3.0
+		return     2.2,     2.2,       2.2,        3.0,      6.0,     3.5,       3.5,          3.5,     4.4,       4.0
 	elif pace == 3:
-		return     1.8,     1.8,       1.8,        2.5
+		return     1.8,     1.8,       1.8,        2.2,      5.5,     2.7,       2.7,          3.0,     4.0,       3.8
 	elif pace == 4:
-		return     1.0,     1.0,       1.0,        1.8
+		return     1.25,     1.25,     1.25,       2.1,      5.5,     2.5,       2.5,         2.4,      3.3,       3.0
 	elif pace == 5:
-		return     0.8,     0.8,       0.8,       1.5
+		return     1.0,     1.0,       1.2,        1.9,      5.0,     2.3,       2.3,         2.15,     3.0,       2.8
 
 # return the action frequency (= probability of certain actions). Advance = 0, retreat = 1, long retreat = 2, lunge = 3
 def get_rand_action():
 
 		rand_action = random.random()
 
-		adv_f 	   = 0.45
-		ret_f 	   = adv_f + 0.35
+		adv_f 	   = 0.25
+		ret_f 	   = adv_f + 0.30
 		long_ret_f = ret_f + 0.10
 		lunge_f	   = long_ret_f + 0.10
+
+		fleche_f	       = lunge_f + 0.025
+		adv_lunge_f	   	   = fleche_f + 0.075
+		retr_lunge_f	   = adv_lunge_f + 0.05
+		long_lunge_f	   = retr_lunge_f + 0.05
+
+		redouble_f	   	   = long_lunge_f + 0.025
+		duck_f	   	       = redouble_f + 0.025
+
+
+		## testing
+		#print("%s/%s/%s/%s/%s/%s/%s/%s "%(adv_f,ret_f,long_ret_f,lunge_f,fleche_f,adv_lunge_f,retr_lunge_f,long_lunge_f ))
+
+		### make a generalized way to do this with any actions we give 
+
 
 
 		if rand_action <= adv_f:
@@ -80,6 +94,20 @@ def get_rand_action():
 			return 2
 		elif rand_action > long_ret_f and rand_action < lunge_f:
 			return 3
+
+		elif rand_action > lunge_f and rand_action < fleche_f:
+			return 4
+		elif rand_action > fleche_f and rand_action < adv_lunge_f:
+			return 5
+		elif rand_action > adv_lunge_f and rand_action < retr_lunge_f:
+			return 6
+		elif rand_action > retr_lunge_f and rand_action < long_lunge_f:
+			return 7
+
+		elif rand_action > long_lunge_f and rand_action < redouble_f:
+			return 8
+		elif rand_action > redouble_f and rand_action < duck_f:
+			return 9
 		else:
 			raise ValueError("ERROR: invalid random number: %s"%rand_action)
  
@@ -96,14 +124,14 @@ def create_lesson(fencerType, time_left, pace, piste_length, end_margin, outfile
 
 	pos = piste_length / 2.0
 
-	actions = ["advance", "retreat", "long retreat", "lunge"]
+	actions = ["advance", "retreat", "long retreat", "lunge", "fleche", "advance-lunge", "retreat-lunge", "long-lunge", "redouble", "duck"]
 
 
 	# create the lesson plan text file
 	with open("test%s.txt" % outfile_str, "w") as lesson:
 
-		lesson.write("Hey, kids\n")
-		lesson.write("Welcome to Uncle Scott's torture chamber: %s seconds in hell\n"%(time_left))
+		#lesson.write("Hey, kids\n")
+		#lesson.write("Welcome to Uncle Scott's torture chamber: %s seconds in hell\n"%(time_left))
 		lesson.write("Let's get started in five\n")
 		lesson.write("pause 1\n")
 		lesson.write("four\n")
@@ -122,7 +150,7 @@ def create_lesson(fencerType, time_left, pace, piste_length, end_margin, outfile
 				# generate a random action
 				action 		  = get_rand_action()
 				valid_action  = isValidAction(action_lens[action], pos, piste_length, end_margin)
-			if action in list(range(4)):
+			if action in list(range(10)):
 				lesson.write("%s\n"%(actions[action]))
 				lesson.write("pause %s\n"%(action_ts[action]))
 			else:
@@ -178,9 +206,9 @@ if __name__=="__main__":
 	# create lesson plan for x minutes
 	read_lesson(infile)
 
-
 	### vary the sleep timing
 	### make combo moves 
+
 
 
 

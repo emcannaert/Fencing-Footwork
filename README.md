@@ -41,10 +41,22 @@ The script is executed via the command line. You must provide the fencer type an
 | --saveExercise | Optional | Flag to save the generated drill to a text file. |
 | --voice | Optional | Index of the system TTS voice to use. |
 
-#### Example Command
+#### Example Installation Commands
 
 To generate and run a 2-minute drill for a normal fencer on a 42-foot piste:
 ```
+(ubuntu) wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+(ubuntu) bash Miniconda3-latest-Linux-x86_64.sh
+(macOS) brew install --cask miniconda
+
+conda create -n fencing_coach python=3.10
+conda activate fencing_coachpip install pyttsx3
+conda activate fencing_coach
+pip install pyttsx3
+
+git clone https://github.com/emcannaert/Fencing-Footwork.git
+cd Fencing-Footwork
+
 python fencing_footwork.py --fencerType normal --pisteLength 42 --duration 120 --pace 3
 ```
 ---
